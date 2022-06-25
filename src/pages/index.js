@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css';
 import Image from 'next/image';
@@ -7,6 +8,10 @@ import { Camera } from 'react-feather';
 export default function ProductsList() {
   return (
     <div className={styles.container}>
+      <Head>
+        <title>投稿作成</title>
+      </Head>
+
       <main>
         <div className={styles.iconCircle} />
         <img src="/image1.png" />
