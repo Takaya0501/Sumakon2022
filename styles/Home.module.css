@@ -12,11 +12,22 @@
   margin-bottom: 20px;
 }
 
-.iconpicture {
-  width: 50px;
-  height: 50px;
-  top: 100px;
-  left: 100px;
+.photoicon {
+  position: absolute;
+  height: 1000px;
+  width: 1000px;
+  top: -132.875px;
+  border-radius: 0px;
+}
+
+.AiFillCamera {
+  left: 50px;
+  width: 100px;
+}
+
+.MdPhotoLibrary {
+  left: 50px;
+  width: 100px;
 }
 
 .picture {

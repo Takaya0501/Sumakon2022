@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import styles from '../../styles/Home.module.css';
-import Image from 'next/image';
 import React from 'react';
-import { Camera } from 'react-feather';
+import { AiFillCamera } from 'react-icons/ai';
+import { MdPhotoLibrary } from 'react-icons/md';
+// import { IconContext } from 'react-icons';
 
 export default function ProductsList() {
   return (
@@ -19,7 +19,10 @@ export default function ProductsList() {
       {/* <p className={styles.iconpicture}>
         <img src="/../../picture/camera.jpeg" alt="表示できません" />
       </p> */}
-      <Camera />
+      <h1>
+        <MdPhotoLibrary className={styles.MdPhotoLibrary} />
+        <AiFillCamera className={styles.AiFillCamera} />
+      </h1>
     </div>
   );
 }
