@@ -12,12 +12,48 @@
   margin-bottom: 20px;
 }
 
-.photoicon {
-  position: absolute;
-  height: 1000px;
-  width: 1000px;
-  top: -132.875px;
-  border-radius: 0px;
+/* 写真選択がらみ */
+.imageContainer {
+  position: unset !important;
+}
+
+.image {
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+}
+
+.label {
+  margin-left: 3em;
+}
+.my-file-input {
+  display: inline-block;
+  padding: 5px;
+  width: 200px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  background-color: #55f;
+  color: white;
+  box-shadow: #888 2px 2px 1px;
+  cursor: pointer;
+}
+.my-file-input:hover {
+  background-color: #88f;
+}
+.my-file-input:hover {
+  background-color: #88f;
+}
+.my-file-input:active {
+  box-shadow: #888 1px 1px 1px;
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+.my-file-input input {
+  display: none;
 }
 
 .AiFillCamera {
@@ -28,15 +64,6 @@
 .MdPhotoLibrary {
   left: 50px;
   width: 100px;
-}
-
-.picture {
-  position: absolute;
-  width: 333.82px;
-  height: 282px;
-  top: -433px;
-  left: 27px;
-  background-image: ('image1.png');
 }
 
 .main {
