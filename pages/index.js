@@ -1,5 +1,4 @@
-//8/12
-//次やること：ファイル選択ボタンいじる
+//8/17
 //投稿ボタン押した後の処理
 
 import Head from 'next/head';
@@ -20,22 +19,24 @@ export default function posting() {
         <title>投稿作成</title>
       </Head>
       <h1>投稿作成</h1>
-      <div className={styles.iconCircle} />
+      {/* <div className={styles.iconCircle} /> */}
       <main>
-        <div className={preview}>
-          写真を選択して下さい。
-          <br />
-          <label>
-            <input type="file" accept="image/*" multiple="multiple" onChange={handleChangeFile} />
-          </label>
-          <br />
-          <img className={styles.preview} src={preview} name="aaa" />
-        </div>
+        <form action="send_data" method="post">
+          <div className={preview}>
+            <h3>写真を選択して下さい。</h3>
 
-        <form action="/send-data-here" method="post">
-          <br />
-          <label for="first">投稿文を入力して下さい。</label>
-          <br />
+            <label className={styles.file}>
+              <div>画像を選ぶ</div>
+              <input type="file" accept="image/*" multiple="multiple" onChange={handleChangeFile} />
+            </label>
+            <br />
+            <img className={styles.preview} src={preview} name="aaa" />
+          </div>
+
+          <label for="first">
+            <h3>投稿文を入力して下さい。</h3>
+          </label>
+
           <textarea
             className={styles.textarea}
             name="text"
@@ -47,10 +48,11 @@ export default function posting() {
 
           <br />
           <br />
-
-          <button className={styles.submit} type="submit">
-            投稿
-          </button>
+          <div className={styles.submit_color}>
+            <button className={styles.submit} type="submit">
+              投稿
+            </button>
+          </div>
         </form>
       </main>
       {/* <div className={styles.imageContainer}>

@@ -18,23 +18,24 @@
   margin-bottom: 20px;
 }
 
-/* 文章入力 */
-.textarea {
-  max-width: 400px;
-  max-height: 400px;
-  resize: none;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-weight: 600;
-  font-size: 24px;
-  color: #666666;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.5), 0 0 0 0.15vw transparent;
-  border-radius: 0.4vw;
-  border: none;
-  outline: none;
-  padding: 10px;
-  transition: 0.4s;
+/* ファイル選択ボタン */
+.file input {
+  display: none;
+}
+
+.file div {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+  width: 50%;
+  border-radius: 0.5em;
+  transition: all 0.3s ease;
+}
+
+.file div:hover {
+  background: #022cfa;
+  color: #fff;
 }
 
 /*画像サイズ*/
@@ -48,22 +49,56 @@
   position: unset !important;
 }
 
+/* 文章入力 */
+.textarea {
+  max-width: 400px;
+  max-height: 400px;
+  resize: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+  background-color: #fff;
+  /* box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.5), 0 0 0 0.15vw transparent; */
+  box-shadow: 3px 3px 6px #c5c5c5, -6px -6px 12px #ffffff;
+  border-radius: 0.5em;
+  border: none;
+  outline: none;
+  padding: 10px;
+  transition: 0.4s;
+}
+
 /* 投稿ボタン */
 .submit {
+  cursor: pointer;
   color: #090909;
   padding: 0.7em 1.7em;
   font-size: 18px;
   border-radius: 0.5em;
-  background: #e8e8e8;
+  background: #ffffff;
   border: 1px solid #e8e8e8;
   transition: all 0.3s;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+
   position: absolute;
   top: 105;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+.submit :hover {
+  background-color: #022cfa;
+}
+
+.submit_color {
+  background-color: #fff;
+}
+.submit_color :hover {
+  background-color: #022cfa;
+  color: #fff;
 }
 
 .image {
@@ -72,9 +107,9 @@
   height: unset !important;
 }
 
-.label {
+/* .label {
   margin-left: 3em;
-}
+} */
 .my-file-input {
   display: inline-block;
   padding: 5px;
