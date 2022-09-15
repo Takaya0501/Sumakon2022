@@ -51,6 +51,7 @@ export default function posting() {
           <div className={styles.submit_color}>
             <button className={styles.submit} type="submit">
               投稿
+              <br />
             </button>
           </div>
         </form>
