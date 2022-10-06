@@ -1,28 +1,15 @@
-const express = require('express');
-const mysql = require('mysql'); //mysqlの読み込み
+import Leaflet from 'leaflet';
+import React, { Component } from 'react';
+// import './App.css';
+import 'leaflet/dist/leaflet.css';
+import SimpleExample from 'index';
 
-const app = express();
+Leaflet.Icon.Default.imagePath = '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/';
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'uth!on9ohj4v',
-  database: 'list_app',
-}); //mysqlの接続情報
-
-connection.connect((err) => {
-  if (err) {
-    console.log('error connecting: ' + err.stack);
-    return;
+class App extends Component {
+  render() {
+    return <SimpleExample />;
   }
-  console.log('success');
-}); //接続できていないときにエラーを表示する
+}
 
-app.get('/', (req, res) => {
-  connection.query('SELECT * FROM users', (error, results) => {
-    console.log(results);
-    res.render('hello.ejs');
-  });
-});
-
-app.listen(3000); //'/'のルーティング
+export default App;

@@ -2,6 +2,7 @@
 //投稿ボタン押した後の処理
 
 import Head from 'next/head';
+import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import React, { useState } from 'react';
 
@@ -12,6 +13,12 @@ export default function posting() {
     const { files } = e.target;
     setPreview(window.URL.createObjectURL(files[0]));
   };
+
+  // useEffect(() => {
+  //   fetch('/api/index.js')
+  //     .then((res) => res.json())
+  //     .then(console.log);
+  // }, []);
 
   return (
     <div className={styles.container}>
@@ -56,6 +63,7 @@ export default function posting() {
           </div>
         </form>
       </main>
+
       {/* <div className={styles.imageContainer}>
         <Image className={styles.image} src="/picture/image1.png" width="200%" height="200%" />
       </div> */}
