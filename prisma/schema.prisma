@@ -7,13 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id   Int     @id @default(autoincrement())
-  name String  @db.VarChar(255)
-  memo String? @db.Text
-}
-
 model post {
-  id       Int     @id @default(autoincrement())
-  sentence String? @db.Text
+  id       Int    @id @default(autoincrement())
+  sentence String
+  picture  String
+  user     String
 }

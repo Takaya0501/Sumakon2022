@@ -1,6 +1,3 @@
-//8/17
-//投稿ボタン押した後の処理
-
 import Head from 'next/head';
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
@@ -40,6 +37,17 @@ export default function posting() {
             <img className={styles.preview} src={preview} name="aaa" />
           </div>
 
+          <label for="name">
+            <h3>名前を入力して下さい。</h3>
+            <textarea
+              className={styles.textarea}
+              name="text"
+              style={{ resize: 'none;' }}
+              rows="1"
+              cols="40"
+              maxlength="40"
+            ></textarea>
+          </label>
           <label for="first">
             <h3>投稿文を入力して下さい。</h3>
           </label>
