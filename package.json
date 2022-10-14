@@ -20,6 +20,7 @@
     "serverless-mysql": "^1.5.4"
   },
   "devDependencies": {
+    "@types/puppeteer": "^5.4.7",
     "@types/react": "^18.0.21",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",

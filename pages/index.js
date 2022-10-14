@@ -11,12 +11,6 @@ export default function posting() {
     setPreview(window.URL.createObjectURL(files[0]));
   };
 
-  // useEffect(() => {
-  //   fetch('/api/index.js')
-  //     .then((res) => res.json())
-  //     .then(console.log);
-  // }, []);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -48,6 +42,17 @@ export default function posting() {
               maxlength="40"
             ></textarea>
           </label>
+          <label for="location">
+            <h3>写真を撮影した場所を入力して下さい。</h3>
+            <textarea
+              className={styles.textarea}
+              name="text"
+              style={{ resize: 'none;' }}
+              rows="1"
+              cols="40"
+              maxlength="40"
+            ></textarea>
+          </label>
           <label for="first">
             <h3>投稿文を入力して下さい。</h3>
           </label>
@@ -62,6 +67,7 @@ export default function posting() {
           ></textarea>
 
           <br />
+
           <br />
           <div className={styles.submit_color}>
             <button className={styles.submit} type="submit">

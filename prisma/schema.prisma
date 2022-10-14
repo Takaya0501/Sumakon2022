@@ -8,8 +8,10 @@ datasource db {
 }
 
 model post {
-  id       Int    @id @default(autoincrement())
-  sentence String
-  picture  String
-  user     String
+  id Int @id @default(autoincrement())
+  picture String
+  name String @db.VarChar(20)
+  sen String @db.Text
+  time DateTime  @default(now())
+  kariloce String 
 }
