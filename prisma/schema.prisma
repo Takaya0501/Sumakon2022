@@ -1,19 +1,20 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
-model post {
-  id Int @id @default(autoincrement())
-  picture String
-  name String @db.VarChar(20)
-  sen String @db.Text
-  time DateTime  @default(now())
-  kariloce String 
+model dailies {
+  id      Int    @id @default(autoincrement())
+  author  String @db.VarChar(32)
+  pic Bytes 
+  lat Float @db.Double
+  lng Float @db.Double
+  context String @db.Text
+  datetime DateTime @db.DateTime
 }
