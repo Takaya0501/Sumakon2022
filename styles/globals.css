@@ -1,4 +1,8 @@
-html,
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -20,7 +24,7 @@ a:hover {
 
 /* iPhone 11 Pro / X - 1 */
 
-iPhone {
+/* iPhone {
   position: relative;
   width: 375px;
   height: 812px;
@@ -31,4 +35,4 @@ iPhone {
 img {
   max-width: 100%;
   display: block;
-}
+} */

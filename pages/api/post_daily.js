@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       lat: json.lat,
       lng: json.lng,
       context: json.context,
-      datetime: json.DateTime,
+      dailies: json.dailies,
     },
   });
 

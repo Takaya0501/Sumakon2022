@@ -4,17 +4,16 @@ generator client {
 }
 
 datasource db {
-  provider             = "mysql"
-  url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model dailies {
-  id      Int    @id @default(autoincrement())
-  author  String @db.VarChar(32)
-  pic Bytes 
-  lat Float @db.Double
-  lng Float @db.Double
-  context String @db.Text
-  datetime DateTime @db.DateTime
+model posts {
+  id         Int      @id @default(autoincrement())
+  author     String   @db.VarChar(32)
+  image_url  String?  @db.VarChar(512)
+  lat        Float
+  lng        Float
+  context    String   @db.Text
+  publish_at DateTime @db.DateTime(0)
 }
