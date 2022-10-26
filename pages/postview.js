@@ -24,16 +24,18 @@ export default function Postview(props) {
       </Head>
 
       <main>
-        <div>
-          <h1>投稿一覧</h1>
+        <div className="border-gray-700 border-2">
+          <h1 className="mt-10 flex flex-row justify-center text-4xl font-bold">
+            投稿一覧
+          </h1>
 
           <ul>
             {posts.map((post) => (
               <li key={post.id}>
-                <h1>{post.author}</h1>
-                <div>
+                <h2 className="mt-10 text-4xl font-bold">{post.author}</h2>
+                {/* <div>
                   {post.lat} / {post.lng}
-                </div>
+                </div> */}
                 <div>{post.publish_at}</div>
                 {post.context}
                 <div>
