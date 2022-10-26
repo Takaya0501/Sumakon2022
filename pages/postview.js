@@ -1,6 +1,8 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
 
 export default function Postview(props) {
   const [posts, setPosts] = useState([]);
@@ -24,6 +26,13 @@ export default function Postview(props) {
       </Head>
 
       <main>
+        <Link href="/">
+          <a>私も投稿したいなぁ！</a>
+        </Link>
+        <Link href="/map">
+          <a>マップ</a>
+        </Link>
+
         <div className="border-gray-700 border-2">
           <h1 className="mt-10 flex flex-row justify-center text-4xl font-bold">
             投稿一覧
@@ -36,7 +45,7 @@ export default function Postview(props) {
                 {/* <div>
                   {post.lat} / {post.lng}
                 </div> */}
-                <div>{post.publish_at}</div>
+                <div>{dayjs(post.publish_at).format("MM月DD日 HH時mm分")}</div>
                 {post.context}
                 <div>
                   <img

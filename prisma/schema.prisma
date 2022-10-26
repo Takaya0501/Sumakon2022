@@ -16,4 +16,13 @@ model posts {
   lng        Float
   context    String   @db.Text
   publish_at DateTime @db.DateTime(0)
+  favorite   Int
+}
+
+model comments {
+  id         Int      @id @default(autoincrement())
+  post_id    Int
+  author     String   @db.VarChar(32)
+  context    String   @db.Text
+  publish_at DateTime @db.DateTime(0)
 }
