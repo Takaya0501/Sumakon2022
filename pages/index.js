@@ -68,7 +68,7 @@ export default function posting() {
   // 日誌を投稿する関数
   const postPosts = () => {
     axios
-      .post("/api/post_posts", {
+      .post("/api/post_post", {
         // APIに渡すJSONの中にauthorとcontextを入れる
         author: username,
         image_url: imageUrl,
