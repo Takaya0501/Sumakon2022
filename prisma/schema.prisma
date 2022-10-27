@@ -16,7 +16,7 @@ model posts {
   lng        Float
   context    String   @db.Text
   publish_at DateTime @db.DateTime(0)
-  favorite   Int
+  favorite   Int?
 }
 
 model comments {
