@@ -1,218 +1,201 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { useEffect, useState, useRef } from "react";
+import styles from "../styles/Home.module.css";
+const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+import { useState, useEffect } from "react";
+import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import axios from "axios";
-import uploadImgFile from "../lib/uploadImgFile";
-import Image from "next/image";
+import Link from "next/link";
 
-// 位置情報のエラーテキスト
-const ErrorText = () => (
-  <p className="App-error-text">geolocation IS NOT available</p>
-);
+export default function Map() {
+  const [Map, setMap] = useState();
+  const [pageIsMounted, setPageIsMounted] = useState(false);
+  // const router = useRouter();
+  // const currentPath = router.pathNamev;
+  const [posts, setPosts] = useState([]);
 
-export default function posting() {
-  const router = useRouter();
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
-  const isFirstRef = useRef(true);
-  //位置情報の関数呼び出し
-  const [isAvailable, setAvailable] = useState(false);
-  // 自分の情報
-  const [username, setUsername] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
-  const [context, setContext] = useState("");
+  function mapView(lng, lat) {
+    setPageIsMounted(true);
 
-  //緯度経度読み込み
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: [lng, lat],
+      zoom: 15,
+    });
+    const language = new MapboxLanguage({ defaultLanguage: "ja" });
+    const zoom = new MapboxLanguage();
+    map.addControl(language);
+    map.addControl(zoom);
+    setMap(map);
+  }
+
   useEffect(() => {
-    isFirstRef.current = false;
-    if ("geolocation" in navigator) {
-      setAvailable(true);
-    }
-  }, [isAvailable]);
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      var lng = position.coords.longitude;
+      var lat = position.coords.latitude;
+      mapView(lng, lat);
+    });
+  }, [posts]);
 
-  const getCurrentPosition = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const { latitude, longitude } = pos.coords;
-      setLat(latitude);
-      setLng(longitude);
+  /* 上記の GeoJSON オブジェクトの各機能について: */
+  // 日誌一覧を取得する関数
+  const getPosts = () => {
+    axios.get("/api/get_posts").then((res) => {
+      const json = res.data;
+      setPosts(json.posts);
     });
   };
 
-  // useEffect実行前であれば、"Loading..."という呼び出しを表示させます
-  if (isFirstRef.current) return <div className="App">Loading...</div>;
+  useEffect(() => {
+    getPosts();
+  }, []);
 
-  // ファイルが選択されたときに行う処理
-  const handleChangeFile = async (e) => {
-    const file = e.target.files[0];
-    // ファイルをアップロードしてURLを取得
-    setImageUrl(await uploadImgFile(file));
-  };
+  useEffect(() => {
+    const pins = [];
 
-  const changeusername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const changeLat = (e) => {
-    setLat(e.target.value);
-  };
-
-  const changeLng = (e) => {
-    setLng(e.target.value);
-  };
-
-  const changeContext = (e) => {
-    setContext(e.target.value);
-  };
-
-  // 日誌を投稿する関数
-  const postPosts = () => {
-    axios
-      .post("/api/post_post", {
-        // APIに渡すJSONの中にauthorとcontextを入れる
-        author: username,
-        image_url: imageUrl,
-        lat: lat,
-        lng: lng,
-        context: context,
-      })
-      .then(() => {
-        console.log("投稿完了しました");
-        router.push("/postview");
+    for (let p of posts) {
+      pins.push({
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [p.lng, p.lat],
+        },
+        post_id: p.id,
+        favorite: p.favorite,
       });
-  };
+    }
+
+    let stores = {
+      type: "FeatureCollection",
+      features: pins,
+    };
+
+    stores.features.forEach((store, i) => {
+      store.geometry.id = i;
+    });
+
+    console.log(stores);
+
+    if (pageIsMounted && stores) {
+      Map.on("load", () => {
+        // Map.addSource('places', {
+        //   'type': 'geojson',
+        //   'data': stores
+        // });
+
+        for (const marker of stores.features) {
+          /* マーカーの div 要素を作成します。 */
+          const el = document.createElement("div");
+          /* マーカーに一意の「id」を割り当てます。 */
+          el.id = `marker-${marker.geometry.id}`;
+          /* スタイリングのために各マーカーに `marker` クラスを割り当てます。 */
+
+          if (marker.favorite < 3) {
+            el.className = "marker-green";
+          } else if (marker.favorite < 5) {
+            el.className = "marker-yellow";
+          } else {
+            el.className = "marker-red";
+          }
+
+          /**
+           * div 要素を使用してマーカーを作成する
+           * 上記で定義し、マップに追加します。
+           **/
+
+          new mapboxgl.Marker(el, { offset: [0, -23] })
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(Map);
+
+          /**
+           * 要素を聞いてクリックしたら、次の 3 つのことを行います。
+           * 1.ポイントに飛ぶ
+           * 2. 他のすべてのポップアップを閉じ、クリックされたストアのポップアップを表示します
+           * 3. サイドバーのリストを強調表示します (他のすべてのリストの強調表示を削除します)
+           **/
+          el.addEventListener("click", (e) => {
+            location.href = `posts/${marker.post_id}`;
+
+            // /* ポイントに飛ぶ */
+            // flyToStore(marker);
+            // /* 他のすべてのポップアップを閉じ、クリックされたストアのポップアップを表示します*/
+            // createPopUp(marker);
+            // /* サイドバーのハイライト リスト */
+            // const activeItem = document.getElementsByClassName('active');
+            // e.stopPropagation();
+            // if (activeItem[0]) {
+            //   activeItem[0].classList.remove('active');
+            // }
+          });
+        }
+      });
+    }
+  }, [Map, posts]);
+
+  /**
+   * すべての店舗リストの地図にマーカーを追加します。
+   **/
+  function addMarkers() {
+    /**
+     *店舗ごとに固有のIDを割り当てます。この「id」を使用します
+     *後でマップ上の各ポイントをリストに関連付けるため
+     * サイドバーにあります。
+     */
+  }
+
+  function flyToStore(currentFeature) {
+    Map.flyTo({
+      center: currentFeature.geometry.coordinates,
+      zoom: 15,
+    });
+  }
+
+  /**
+   * Mapbox GL JS `Popup` を作成します。
+   **/
+  function createPopUp(currentFeature) {
+    const popUps = document.getElementsByClassName("mapboxgl-popup");
+    if (popUps[0]) popUps[0].remove();
+    const popup = new mapboxgl.Popup({ closeOnClick: false })
+      .setLngLat(currentFeature.geometry.coordinates)
+      .setHTML(`<h3>投稿</h3>`)
+      .addTo(Map);
+  }
 
   return (
-    <div>
-      <Head>
-        <title>投稿作成</title>
-      </Head>
-      <main>
-        {/* 投稿アイコン */}
-        <div className="mt-10 flex flex-row justify-center">
-          <div>
-            {/* pngをアイコンにする */}
-            <Image src="/image/post.png" width={43} height={43} />
-          </div>
-          <h1 className="text-4xl font-bold">投稿</h1>
-
-          {/* <div className="w-32 h-10 bg-pink-600 text-white font-bold p-10">
-          たかやんふぁんくらぶ
-        </div> */}
-        </div>
-        <div className="m-10 font-bold text-2xl text-center  text-black flex flex-col justify-center items-center">
-          <label>
-            <div>
-              <div className="w-96 border-2 border-gray-700  rounded-xl">
-                ここをクリックして画像を選択
-              </div>
-
-              <input
-                hidden //ファイルを選択を非表示に
-                type="file"
-                accept="image/*"
-                onChange={handleChangeFile}
-              />
-            </div>
-          </label>
-
-          <img
-            className="mt-5"
-            src={imageUrl}
-            width={380}
-            height={380}
-            alt="選択した画像はここに表示されます"
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>すまこん：ホーム</title>
+          <meta name="description" content="Generated by create next app" />
+          <link rel="icon" href="/favicon.ico" />
+          <link
+            href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
+            rel="stylesheet"
           />
-        </div>
-        <label
-          className="m-10 font-bold text-2xl text-center text-black flex flex-col justify-center items-center"
-          for="name"
-        >
-          <h3>名前を入力して下さい。</h3>
-          <textarea
-            className="mt-5 border-2
-            w-96
-            border-gray-700 
-            text-center
-            resize-none
-            rounded-xl"
-            value={username}
-            onChange={changeusername}
-            name="text"
-            rows="1"
-            cols="40"
-            maxlength="40"
-          ></textarea>
-        </label>
-        <label
-          className="m-10 font-bold text-2xl text-center text-black flex flex-col justify-center items-center"
-          for="location"
-        >
-          <h3>撮影した場所の座標を取得</h3>
-
-          <div className="App">
-            {!isFirstRef && !isAvailable && <ErrorText />}
-            {isAvailable && (
-              <div>
-                <div>
-                  <button
-                    onClick={getCurrentPosition}
-                    className="mt-5 border-2 w-96 border-gray-700 rounded-xl"
-                  >
-                    取得
-                  </button>
-                </div>
-                <div className="flex flex-row mt-5  border-gray-700 rounded-xl">
-                  <input
-                    className="border-2 w-48 border-neutral-500 rounded-xl text-center"
-                    readonly
-                    type="number"
-                    style={{ resize: "none;" }}
-                    rows="1"
-                    cols="9"
-                    value={lat}
-                    onChange={changeLat}
-                  />
-
-                  <input
-                    className="border-2 w-48 border-neutral-500 rounded-xl text-center"
-                    type="number"
-                    readonly
-                    style={{ resize: "none;" }}
-                    rows="1"
-                    cols="9"
-                    value={lng}
-                    onChange={changeLng}
-                  />
-                </div>
-              </div>
-            )}
+        </Head>
+        {/* <main className={styles.main}> */}
+        <main className="flex flex-col w-96 m-96 items-center">
+          <div id="map" className="map"></div>
+          <div>
+            <Link href="/post">
+              <button className="mt-5 mb-10 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
+                投稿はこちらから
+              </button>
+            </Link>
           </div>
-        </label>
-        <div className="m-10 font-bold text-2xl text-center  border-gray-700 text-black flex flex-col justify-center items-center">
-          <label for="first">
-            <h3>投稿文を入力して下さい。</h3>
-          </label>
-          <textarea
-            className="mt-5 border-2 w-96 border-neutral-500 rounded-xl resize-none"
-            value={context}
-            onChange={changeContext}
-            name="context"
-            style={{ resize: "none;" }}
-            rows="4"
-            cols="40"
-            maxlength="200"
-          ></textarea>
-        </div>
-        <label className=" flex flex-col justify-center items-center ">
-          <button
-            onClick={postPosts}
-            className="mt-5 mb-10 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl"
-          >
-            投稿
-          </button>
-        </label>
-      </main>
-    </div>
+          <div>
+            <Link href="/postview">
+              <button className="mt-5 mb-10 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl"></button>
+            </Link>
+          </div>
+        </main>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+      </div>
+    </>
   );
 }

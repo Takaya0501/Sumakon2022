@@ -157,9 +157,8 @@ export default function Postview(props) {
                     いいね！！！！！！！
                   </button>{" "} */}
                 </label>
-                \
               </div>
-              {favorites}
+              <p>{favorites}回いいねが押されました！</p>
               {comments.map((info) => (
                 // infoの中には、id、author、contextの3つが入っている(データベースはこの3つを格納しているから)
                 <div key={info.id} className="pb-2">
