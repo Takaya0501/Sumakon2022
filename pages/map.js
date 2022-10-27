@@ -4,6 +4,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import { useState, useEffect } from "react";
 import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Map() {
   const [Map, setMap] = useState();
@@ -19,7 +20,7 @@ export default function Map() {
 
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/satellite-v9",
+      style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
       zoom: 15,
     });
@@ -109,7 +110,7 @@ export default function Map() {
            * 3. サイドバーのリストを強調表示します (他のすべてのリストの強調表示を削除します)
            **/
           el.addEventListener("click", (e) => {
-            location.href = `https://google.com/?id=${marker.post_id}`;
+            location.href = `posts/${marker.post_id}`;
 
             // /* ポイントに飛ぶ */
             // flyToStore(marker);
@@ -169,13 +170,17 @@ export default function Map() {
             rel="stylesheet"
           />
         </Head>
-        <main className="w-screen h-screen">
-          <div id="map" className="w-full h-64" />
+        <main className={styles.main}>
+          <div id="map" className="map"></div>
           <div className={styles.button1_color}>
-            <button className={styles.button1}>投稿する</button>
+            <Link href="/">
+              <button className={styles.button1}>投稿する</button>
+            </Link>
           </div>
           <div className={styles.button2_color}>
-            <button className={styles.button2}>投稿一覧</button>
+            <Link href="/postview">
+              <button className={styles.button2}>投稿一覧</button>
+            </Link>
           </div>
         </main>
         <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>

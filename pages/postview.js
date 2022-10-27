@@ -44,40 +44,44 @@ export default function Postview(props) {
                 投稿一覧
               </h1>
             </div>
-            <div className="flex flex-col justify-center">
-              <ul>
-                {posts.map((post) => (
-                  <li key={post.id}>
-                    {/* <div className="flex flex-row"> */}
-                    <div className="m-10 p-10  flex flex-col items-center border-gray-700 border-2 rounded-xl">
-                      <div>
-                        <img
-                          className="border-1 rounded-xl"
-                          src={post.image_url}
-                          alt="投稿画像"
-                          width={400}
-                          height={400}
-                        />
-                      </div>
+            <div>
+              <div className="flex flex-col justify-center">
+                <ul>
+                  {posts.map((post) => (
+                    <Link href={`/posts/${post.id}`}>
+                      <li key={post.id}>
+                        {/* <div className="flex flex-row"> */}
+                        <div className="m-10 p-10  flex flex-col items-center border-gray-700 border-2 rounded-xl">
+                          <div>
+                            <img
+                              className="border-1 rounded-xl"
+                              src={post.image_url}
+                              alt="投稿画像"
+                              width={400}
+                              height={400}
+                            />
+                          </div>
 
-                      <p className="m-5 text-left text-xl font-bold">
-                        {post.author}
-                      </p>
-                      {/* <div>
+                          <p className="m-5 text-left text-xl font-bold">
+                            {post.author}
+                          </p>
+                          {/* <div>
                   {post.lat} / {post.lng}
                 </div> */}
-                      <p className="mb-5 text-lg">{post.context}</p>
+                          <p className="mb-5 text-lg">{post.context}</p>
 
-                      {/* {post.id} */}
-                      <div className="text-right">
-                        {dayjs(post.publish_at).format(
-                          "MM月DD日HH時mm分に投稿"
-                        )}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                          {/* {post.id} */}
+                          <div className="text-right">
+                            {dayjs(post.publish_at).format(
+                              "MM月DD日HH時mm分に投稿"
+                            )}
+                          </div>
+                        </div>
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

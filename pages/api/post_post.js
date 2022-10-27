@@ -15,9 +15,10 @@ export default async function handler(req, res) {
       lng: json.lng,
       context: json.context,
       // publish_at: new Date().toISOString({ timeZone: "Asia/Tokyo" }),
-      publish_at: new Date(
-        Date.now() + (new Date().getTimezoneOffset() + 9 * 60) * 60 * 1000
-      ),
+      // publish_at: new Date(
+      //   Date.now() + (new Date().getTimezoneOffset() + 9 * 60) * 60 * 1000
+      // ),
+      publish_at: new Date().toISOString(),
       // -540 JST
       // 0 UTC
     },

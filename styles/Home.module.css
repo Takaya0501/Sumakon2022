@@ -500,3 +500,62 @@
   top: 8%;
   left: 70%;
 }
+.button1 {
+  cursor: pointer;
+  color: #090909;
+  padding: 1.8em 10%;
+  font-size: 90%;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  position: absolute;
+  bottom: 2%;
+  left: 30%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+.button1 :hover {
+  background-color: #022cfa;
+}
+.button1_color {
+  background-color: rgb(255, 255, 255);
+}
+
+.button1_color :hover {
+  background-color: #022cfa;
+  color: #fff;
+}
+
+.button2 {
+  cursor: pointer;
+  color: #090909;
+  padding: 1.8em 10%;
+  font-size: 90%;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  position: absolute;
+  bottom: 2%;
+  left: 70%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+.button2 :hover {
+  background-color: #022cfa;
+}
+.button2_color {
+  background-color: rgb(255, 255, 255);
+}
+
+.button2_color :hover {
+  background-color: #022cfa;
+  color: #fff;
+}

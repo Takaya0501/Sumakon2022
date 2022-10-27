@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.map {
+  position: absolute;
+  height: 85%;
+  width: 100%;
+  top: 0px;
+}
 .marker {
   border: none;
   cursor: pointer;
