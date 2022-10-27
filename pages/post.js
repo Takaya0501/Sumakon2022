@@ -126,7 +126,7 @@ export default function posting() {
         </div>
         <label
           className="m-10 font-bold text-2xl text-center text-black flex flex-col justify-center items-center"
-          for="name"
+          htmlFor="name"
         >
           <h3>名前を入力して下さい。</h3>
           <textarea
@@ -141,12 +141,12 @@ export default function posting() {
             name="text"
             rows="1"
             cols="40"
-            maxlength="40"
+            maxLength="40"
           ></textarea>
         </label>
         <label
           className="m-10 font-bold text-2xl text-center text-black flex flex-col justify-center items-center"
-          for="location"
+          htmlFor="location"
         >
           <h3>撮影した場所の座標を取得</h3>
 
@@ -165,9 +165,9 @@ export default function posting() {
                 <div className="flex flex-row mt-5  border-gray-700 rounded-xl">
                   <input
                     className="border-2 w-48 border-neutral-500 rounded-xl text-center"
-                    readonly
+                    readOnly
                     type="number"
-                    style={{ resize: "none;" }}
+                    style={{ resize: "none" }}
                     rows="1"
                     cols="9"
                     value={lat}
@@ -177,8 +177,8 @@ export default function posting() {
                   <input
                     className="border-2 w-48 border-neutral-500 rounded-xl text-center"
                     type="number"
-                    readonly
-                    style={{ resize: "none;" }}
+                    readOnly
+                    style={{ resize: "none" }}
                     rows="1"
                     cols="9"
                     value={lng}
@@ -190,7 +190,7 @@ export default function posting() {
           </div>
         </label>
         <div className="m-10 font-bold text-2xl text-center  border-gray-700 text-black flex flex-col justify-center items-center">
-          <label for="first">
+          <label htmlFor="first">
             <h3>投稿文を入力して下さい。</h3>
           </label>
           <textarea
@@ -198,10 +198,10 @@ export default function posting() {
             value={context}
             onChange={changeContext}
             name="context"
-            style={{ resize: "none;" }}
+            style={{ resize: "none" }}
             rows="4"
             cols="40"
-            maxlength="200"
+            maxLength="200"
           ></textarea>
         </div>
         <label className=" flex flex-col justify-center items-center ">

@@ -168,7 +168,7 @@ export default function Postview(props) {
               <div className="m-10 font-bold text-2xl text-center  border-gray-700 text-black flex flex-col justify-center items-center">
                 <label
                   className="m-10 font-bold text-2xl text-center text-black flex flex-col justify-center items-center"
-                  for="name"
+                  htmlFor="name"
                 >
                   <h3>名前を入力して下さい。</h3>
                   <textarea
@@ -183,10 +183,10 @@ export default function Postview(props) {
                     name="text"
                     rows="1"
                     cols="40"
-                    maxlength="40"
+                    maxLength="40"
                   ></textarea>
                 </label>
-                <label for="first">
+                <label htmlFor="first">
                   <h3>コメントを入力</h3>
                 </label>
                 <textarea
@@ -194,10 +194,10 @@ export default function Postview(props) {
                   value={context}
                   onChange={changeContext}
                   name="context"
-                  style={{ resize: "none;" }}
+                  style={{ resize: "none" }}
                   rows="4"
                   cols="40"
-                  maxlength="200"
+                  maxLength="200"
                 ></textarea>
               </div>
               <div>

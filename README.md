@@ -1,3 +1,8 @@
+2022 Izue&Yoshioka lab<br />
+第10回学生スマートフォンアプリコンテスト出場作品<br />
+道徳俱楽部<br />
+「みんなのハザードマップ」<br />
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
