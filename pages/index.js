@@ -207,7 +207,7 @@ export default function posting() {
         <label className=" flex flex-col justify-center items-center ">
           <button
             onClick={postPosts}
-            className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl"
+            className="mt-5 mb-10 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl"
           >
             投稿
           </button>
