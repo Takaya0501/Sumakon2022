@@ -85,7 +85,7 @@ export default function posting() {
   return (
     <div>
       <Head>
-        <title>投稿作成</title>
+        <title>みんはざ：投稿作成</title>
       </Head>
       <main>
         {/* 投稿アイコン */}
@@ -103,7 +103,7 @@ export default function posting() {
         <div className="m-10 font-bold text-2xl text-center  text-black flex flex-col justify-center items-center">
           <label>
             <div>
-              <div className="w-96 border-2 border-gray-700  rounded-xl">
+              <div className="w-96 border-2 border-gray-700  rounded-lg">
                 ここをクリックして画像を選択
               </div>
 
@@ -135,7 +135,7 @@ export default function posting() {
             border-gray-700 
             text-center
             resize-none
-            rounded-xl"
+            rounded-lg"
             value={username}
             onChange={changeusername}
             name="text"
@@ -157,14 +157,14 @@ export default function posting() {
                 <div>
                   <button
                     onClick={getCurrentPosition}
-                    className="mt-5 border-2 w-96 border-gray-700 rounded-xl"
+                    className="mt-5 border-2 w-96 border-gray-700 rounded-lg"
                   >
                     取得
                   </button>
                 </div>
                 <div className="flex flex-row mt-5  border-gray-700 rounded-xl">
                   <input
-                    className="border-2 w-48 border-neutral-500 rounded-xl text-center"
+                    className="border-2 w-48 border-neutral-500 rounded-lg text-center"
                     readOnly
                     type="number"
                     style={{ resize: "none" }}
@@ -175,7 +175,7 @@ export default function posting() {
                   />
 
                   <input
-                    className="border-2 w-48 border-neutral-500 rounded-xl text-center"
+                    className="border-2 w-48 border-neutral-500 rounded-lg text-center"
                     type="number"
                     readOnly
                     style={{ resize: "none" }}
@@ -194,7 +194,7 @@ export default function posting() {
             <h3>投稿文を入力して下さい。</h3>
           </label>
           <textarea
-            className="mt-5 border-2 w-96 border-neutral-500 rounded-xl resize-none"
+            className="mt-5 border-2 w-96 border-neutral-500 rounded-lg resize-none"
             value={context}
             onChange={changeContext}
             name="context"
@@ -207,7 +207,7 @@ export default function posting() {
         <label className=" flex flex-col justify-center items-center ">
           <button
             onClick={postPosts}
-            className="mt-5 mb-10 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl"
+            className="mt-5 mb-10 border-2 w-96 font-bold text-2xl border-gray-700 rounded-lg"
           >
             投稿
           </button>
