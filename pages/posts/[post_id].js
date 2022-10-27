@@ -260,7 +260,10 @@ export default function Postview(props) {
           {comments.map((info) => (
             // infoの中には、id、author、contextの3つが入っている(データベースはこの3つを格納しているから)
             <li key={info.id} className="pb-2">
-              {info.author}: {info.context}
+              <div className="m-10 flex flex-row text-lg items-center text-center">
+                <div>{info.author}：</div>
+                <div>{info.context}</div>
+              </div>
             </li>
           ))}
         </ul>
