@@ -111,7 +111,7 @@ export default function Postview(props) {
   }, [post_id]);
 
   //いいね
-  var pics_src = new Array("/image/1.png", "/image/2.png");
+  var pics_src = new Array("/image/good.png", "/image/redgood.png");
   var num = 0;
   function slideshow() {
     if (num == 1) {
@@ -184,7 +184,7 @@ export default function Postview(props) {
                           <img
                             id="mypic"
                             onClick={slideshow}
-                            src={"/image/1.png"}
+                            src={"/image/good.png"}
                             width="100"
                             height="100"
                           />
