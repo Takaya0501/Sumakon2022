@@ -44,12 +44,12 @@ export default function Postview(props) {
                 投稿一覧
               </h1>
             </div>
-            <div className="w-240 h-240flex flex-col justify-center">
+            <div className="flex flex-col justify-center">
               <ul>
                 {posts.map((post) => (
                   <li key={post.id}>
                     {/* <div className="flex flex-row"> */}
-                    <div className="m-10 p-10 w-120 h-120 flex flex-col items-center border-gray-700 border-2 rounded-xl">
+                    <div className="m-10 p-10  flex flex-col items-center border-gray-700 border-2 rounded-xl">
                       <div>
                         <img
                           className="border-1 rounded-xl"
@@ -66,12 +66,12 @@ export default function Postview(props) {
                       {/* <div>
                   {post.lat} / {post.lng}
                 </div> */}
-                      <p className="text-lg">{post.context}</p>
+                      <p className="mb-5 text-lg">{post.context}</p>
 
                       {/* {post.id} */}
                       <div className="text-right">
                         {dayjs(post.publish_at).format(
-                          "MM月DD日HH時mm分に投稿されました"
+                          "MM月DD日HH時mm分に投稿"
                         )}
                       </div>
                     </div>
