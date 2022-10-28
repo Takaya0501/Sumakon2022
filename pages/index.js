@@ -173,7 +173,7 @@ export default function Map() {
         {/* <main className={styles.main}> */}
         <main className="flex flex-col w-screen items-center">
           <h1 className="m-10 text-4xl text-bold">みんなのハザードマップ</h1>
-          <div className="mt-5 mb-10 flex flex-row items-center">
+          <div className="mb-10 flex flex-row items-center">
             <Link href="/post">
               <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
                 投稿する
@@ -181,7 +181,7 @@ export default function Map() {
             </Link>
             <Link href="/postview">
               <button className="ml-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
-                投稿一覧を見る
+                投稿一覧
               </button>
             </Link>
           </div>
