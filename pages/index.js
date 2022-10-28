@@ -173,7 +173,7 @@ export default function Map() {
         {/* <main className={styles.main}> */}
         <main className="flex flex-col w-screen items-center">
           <h1 className="m-10 text-4xl text-bold">みんなのハザードマップ</h1>
-          <div className="mt-5 mb-5 flex flex-row">
+          <div className="mt-5 mb-10 flex flex-row">
             <Link href="/post">
               <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
                 投稿する
