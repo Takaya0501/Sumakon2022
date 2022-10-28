@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import { useState, useEffect } from "react";
 import MapboxLanguage from "@mapbox/mapbox-gl-language";
@@ -42,7 +41,7 @@ export default function Map() {
   }, [posts]);
 
   /* 上記の GeoJSON オブジェクトの各機能について: */
-  // 日誌一覧を取得する関数
+  // 投稿一覧を取得する関数
   const getPosts = () => {
     axios.get("/api/get_posts").then((res) => {
       const json = res.data;
@@ -138,14 +137,7 @@ export default function Map() {
 
   /**
    * すべての店舗リストの地図にマーカーを追加します。
-   **/
-  function addMarkers() {
-    /**
-     *店舗ごとに固有のIDを割り当てます。この「id」を使用します
-     *後でマップ上の各ポイントをリストに関連付けるため
-     * サイドバーにあります。
-     */
-  }
+  
 
   function flyToStore(currentFeature) {
     Map.flyTo({
@@ -180,11 +172,9 @@ export default function Map() {
         </Head>
         {/* <main className={styles.main}> */}
         <main className="flex flex-col w-screen items-center">
-          <h1>みんはざ</h1>
-
           <div className="mt-5 mb-10 flex flex-row">
             <Link href="/post">
-              <button className="border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
+              <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
                 投稿
               </button>
             </Link>
@@ -197,7 +187,7 @@ export default function Map() {
 
           <div
             id="map"
-            className="bg-sky-300 w-full h-[calc(100vh-5rem)] fixed left-0 bottom-0"
+            className="bg-sky-300 w-full h-[calc(100vh-15rem)] fixed left-0 bottom-0"
           />
         </main>
         <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>

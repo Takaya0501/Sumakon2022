@@ -256,7 +256,7 @@ export default function Postview(props) {
 
         <ul>
           {/* おまじない */}
-          {/* dailiesリストから一つ一つ取り出して、infoに代入して、そのinfoを使う */}
+          {/* リストから一つ一つ取り出して、infoに代入して、そのinfoを使う */}
           {comments.map((info) => (
             // infoの中には、id、author、contextの3つが入っている(データベースはこの3つを格納しているから)
             <li key={info.id} className="pb-2">
