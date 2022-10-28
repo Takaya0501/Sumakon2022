@@ -90,19 +90,18 @@ export default function posting() {
       </Head>
 
       <main>
-        <div className="mt-5 mb-5 flex flex-row">
+        <div className="flex flex-row">
           <Link href="/">
-            <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
+            <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
               ホームに戻る
             </button>
           </Link>
-          <Link href="/postview">
-            <button className="ml-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
-              投稿を見る
+          <Link href="../postview">
+            <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
+              投稿一覧に戻る
             </button>
           </Link>
         </div>
-
         {/* 投稿アイコン */}
         <div className="mt-10 flex flex-row justify-center">
           <div>
