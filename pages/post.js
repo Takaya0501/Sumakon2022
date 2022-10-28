@@ -98,7 +98,7 @@ export default function posting() {
           </Link>
           <Link href="../postview">
             <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
-              投稿一覧に戻る
+              投稿を見る
             </button>
           </Link>
         </div>
