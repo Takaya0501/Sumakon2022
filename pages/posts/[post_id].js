@@ -194,6 +194,11 @@ export default function Postview(props) {
 
                     <p>{favorites}回いいねが押されました！</p>
                   </div>
+                  <div className="mt-10 w-96 h-1 bg-gray-400 rounded-full" />
+
+                  <div className=" w-96 h-1 m-10 font-bold text-2xl items-center text-center">
+                    コメント
+                  </div>
 
                   {comments.map((info) => (
                     // infoの中には、id、author、contextの3つが入っている(データベースはこの3つを格納しているから)
@@ -201,6 +206,25 @@ export default function Postview(props) {
                       {info.favorite}
                     </div>
                   ))}
+
+                  <ul>
+                    {/* おまじない */}
+                    {/* リストから一つ一つ取り出して、infoに代入して、そのinfoを使う */}
+                    {comments.map((info) => (
+                      // infoの中には、id、author、contextの3つが入っている(データベースはこの3つを格納しているから)
+                      <li
+                        key={info.id}
+                        className="m-5 flex flex-col items-center"
+                      >
+                        <div className="flex flex-row text-lg text-center">
+                          <div className="text-left text-xl font-bold">
+                            {info.author}：
+                          </div>
+                          <div>{info.context}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
 
                   <div className="w-96 h-1 bg-gray-400 rounded-full" />
 
@@ -253,21 +277,6 @@ export default function Postview(props) {
             </div>
           </div>
         </div>
-
-        <ul>
-          {/* おまじない */}
-          {/* リストから一つ一つ取り出して、infoに代入して、そのinfoを使う */}
-          {comments.map((info) => (
-            // infoの中には、id、author、contextの3つが入っている(データベースはこの3つを格納しているから)
-            <li key={info.id} className="pb-2">
-              <div className="m-10 flex flex-row text-lg items-center text-center">
-                <div className="mb-10">コメント</div>
-                <div>{info.author}：</div>
-                <div>{info.context}</div>
-              </div>
-            </li>
-          ))}
-        </ul>
       </main>
     </div>
   );
