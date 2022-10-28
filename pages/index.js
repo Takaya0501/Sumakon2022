@@ -172,7 +172,8 @@ export default function Map() {
         </Head>
         {/* <main className={styles.main}> */}
         <main className="flex flex-col w-screen items-center">
-          <div className="mt-5 mb-10 flex flex-row">
+          <h1 className="m-10 text-4xl text-bold">みんなのハザードマップ</h1>
+          <div className="mt-5 mb-5 flex flex-row">
             <Link href="/post">
               <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
                 投稿する
@@ -180,14 +181,14 @@ export default function Map() {
             </Link>
             <Link href="/postview">
               <button className="ml-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
-                投稿を見る
+                投稿一覧を見る
               </button>
             </Link>
           </div>
 
           <div
             id="map"
-            className="bg-sky-300 w-full h-[calc(100vh-15rem)] fixed left-0 bottom-0"
+            className="bg-sky-300 w-full h-[calc(100vh-15rem)] fixed left-0 bottom-5 border-2 border-gray-700 rounded-xl"
           />
         </main>
         <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>

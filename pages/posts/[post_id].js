@@ -132,18 +132,18 @@ export default function Postview(props) {
       </Head>
 
       <main>
-        <div className="flex flex-col">
-          <Link href="postview">
+        <div className="flex flex-row">
+          <Link href="/">
+            <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
+              ホームに戻る
+            </button>
+          </Link>
+          <Link href="../postview">
             <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
               投稿一覧に戻る
             </button>
           </Link>
         </div>
-        <Link href="/">
-          <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-xl">
-            ホームに戻る
-          </button>
-        </Link>
         <div className="flex flex-col">
           <div className="mt-10 flex flex-row justify-center">
             <div>

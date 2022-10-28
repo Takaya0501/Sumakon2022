@@ -27,7 +27,7 @@ export default function Postview(props) {
       </Head>
 
       <main>
-        <div className="flex flex-col">
+        <div className="flex flex-row">
           <Link href="/">
             <button className="mt-5 border-2 w-96 font-bold text-2xl border-gray-700 rounded-lg">
               ホームに戻る

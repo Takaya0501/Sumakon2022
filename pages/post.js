@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import uploadImgFile from "../lib/uploadImgFile";
 import Image from "next/image";
+import Link from "next/link";
 
 // 位置情報のエラーテキスト
 const ErrorText = () => (
@@ -87,7 +88,21 @@ export default function posting() {
       <Head>
         <title>みんはざ：投稿作成</title>
       </Head>
+
       <main>
+        <div className="mt-5 mb-5 flex flex-row">
+          <Link href="/">
+            <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
+              ホームに戻る
+            </button>
+          </Link>
+          <Link href="/postview">
+            <button className="ml-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
+              投稿を見る
+            </button>
+          </Link>
+        </div>
+
         {/* 投稿アイコン */}
         <div className="mt-10 flex flex-row justify-center">
           <div>
@@ -95,10 +110,6 @@ export default function posting() {
             <Image src="/image/post.png" width={43} height={43} />
           </div>
           <h1 className="text-4xl font-bold">投稿</h1>
-
-          {/* <div className="w-32 h-10 bg-pink-600 text-white font-bold p-10">
-          たかやんふぁんくらぶ
-        </div> */}
         </div>
         <div className="m-10 font-bold text-2xl text-center  text-black flex flex-col justify-center items-center">
           <label>
