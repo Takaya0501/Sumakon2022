@@ -175,12 +175,12 @@ export default function Map() {
           <div className="mt-5 mb-10 flex flex-row">
             <Link href="/post">
               <button className="mr-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
-                投稿
+                投稿する
               </button>
             </Link>
             <Link href="/postview">
               <button className="ml-5 border-2 w-36 font-bold text-2xl border-gray-700 rounded-xl">
-                一覧
+                投稿を見る
               </button>
             </Link>
           </div>
